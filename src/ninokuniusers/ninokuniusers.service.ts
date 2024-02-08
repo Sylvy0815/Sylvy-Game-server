@@ -21,9 +21,29 @@ export class NinokuniUsersService {
       nickname,
       pid,
     });
-    await this.ninokuniUserRepository.save(newUser);
-    return newUser;
+    return this.ninokuniUserRepository.save(newUser);
   }
 
-  // 다른 CRUD 메소드...
+  async findAll(): Promise<NinokuniUser[]> {
+    return this.ninokuniUserRepository.find();
+  }
+
+  async findOne(id: number): Promise<NinokuniUser> {
+    return this.ninokuniUserRepository.findOne({ where: { id } });
+  }
+
+  async update(
+    id: number,
+    updateUserDto: { server?: string; nickname?: string; pid?: string },
+  ): Promise<NinokuniUser> {
+    const user = await this.findOne(id);
+    if (updateUserDto.server) user.server = updateUserDto.server;
+    if (updateUserDto.nickname) user.nickname = updateUserDto.nickname;
+    if (updateUserDto.pid) user.pid = updateUserDto.pid;
+    return this.ninokuniUserRepository.save(user);
+  }
+
+  async remove(id: number): Promise<void> {
+    await this.ninokuniUserRepository.delete(id);
+  }
 }

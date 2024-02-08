@@ -1,5 +1,13 @@
 // src/ninokuniusers/ninokuniusers.controller.ts
-import { Controller, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { NinokuniUsersService } from './ninokuniusers.service';
 
 @Controller('ninokuniusers')
@@ -7,7 +15,7 @@ export class NinokuniUsersController {
   constructor(private readonly ninokuniUsersService: NinokuniUsersService) {}
 
   @Post()
-  async create(
+  create(
     @Body() createUserDto: { server: string; nickname: string; pid: string },
   ) {
     return this.ninokuniUsersService.create(
@@ -17,5 +25,26 @@ export class NinokuniUsersController {
     );
   }
 
-  // 다른 API 엔드포인트...
+  @Get()
+  findAll() {
+    return this.ninokuniUsersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.ninokuniUsersService.findOne(+id);
+  }
+
+  @Put(':id')
+  update(
+    @Param('id') id: string,
+    @Body() updateUserDto: { server?: string; nickname?: string; pid?: string },
+  ) {
+    return this.ninokuniUsersService.update(+id, updateUserDto);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ninokuniUsersService.remove(+id);
+  }
 }
