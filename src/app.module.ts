@@ -1,3 +1,4 @@
+// src/app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -5,8 +6,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
-import { NinokuniUsersController } from './ninokuniusers/ninokuniusers.controller';
-import { NinokuniUsersService } from './ninokuniusers/ninokuniusers.service';
 import { NinokuniUsersModule } from './ninokuniusers/ninokuniusers.module';
 
 @Module({
@@ -27,9 +26,9 @@ import { NinokuniUsersModule } from './ninokuniusers/ninokuniusers.module';
       }),
       inject: [ConfigService],
     }),
-    NinokuniUsersModule,
+    NinokuniUsersModule, // 이 모듈이 NinokuniUsersService와 NinokuniUsersController를 처리합니다.
   ],
-  controllers: [AppController, UsersController, NinokuniUsersController],
-  providers: [AppService, UsersService, NinokuniUsersService],
+  controllers: [AppController, UsersController], // NinokuniUsersController를 여기서 제거
+  providers: [AppService, UsersService], // NinokuniUsersService를 여기서 제거
 })
 export class AppModule {}
