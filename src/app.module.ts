@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { NinokuniUsersModule } from './ninokuniusers/ninokuniusers.module';
+import { CouponSubmissionsModule } from './coupon-submission/coupon-submissions.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { NinokuniUsersModule } from './ninokuniusers/ninokuniusers.module';
       inject: [ConfigService],
     }),
     NinokuniUsersModule, // 이 모듈이 NinokuniUsersService와 NinokuniUsersController를 처리합니다.
+    CouponSubmissionsModule, // 쿠폰 제보 모듈
   ],
   controllers: [AppController, UsersController], // NinokuniUsersController를 여기서 제거
   providers: [AppService, UsersService], // NinokuniUsersService를 여기서 제거
