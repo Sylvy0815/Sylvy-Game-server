@@ -17,6 +17,7 @@ nest generate service ninokuniusers
 nest generate module ninokuniusers
 npm install @nestjs/typeorm typeorm pg
 npm install @nestjs/config
+npm install @nestjs/schedule @nestjs/axios axios
 
 docker run --name sylvy-game-postgres -e POSTGRES_PASSWORD=xxxxx
 

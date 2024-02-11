@@ -47,4 +47,9 @@ export class NinokuniUsersController {
   remove(@Param('id') id: string) {
     return this.ninokuniUsersService.remove(+id);
   }
+
+  @Delete('/all')
+  removeAll() {
+    return this.ninokuniUsersService.removeAll();
+  }
 }

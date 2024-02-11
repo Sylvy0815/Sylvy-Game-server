@@ -43,4 +43,9 @@ export class CouponSubmissionsController {
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.couponSubmissionsService.remove(id);
   }
+
+  @Delete('/all')
+  removeAll() {
+    return this.couponSubmissionsService.removeAll();
+  }
 }

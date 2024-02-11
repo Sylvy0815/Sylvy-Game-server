@@ -46,4 +46,8 @@ export class NinokuniUsersService {
   async remove(id: number): Promise<void> {
     await this.ninokuniUserRepository.delete(id);
   }
+
+  async removeAll(): Promise<void> {
+    await this.ninokuniUserRepository.clear();
+  }
 }

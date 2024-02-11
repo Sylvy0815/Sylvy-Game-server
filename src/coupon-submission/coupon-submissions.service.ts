@@ -49,4 +49,8 @@ export class CouponSubmissionsService {
       );
     }
   }
+
+  async removeAll(): Promise<void> {
+    await this.couponSubmissionsRepository.clear();
+  }
 }

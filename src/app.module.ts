@@ -8,9 +8,13 @@ import { UsersController } from './users/users.controller';
 import { UsersService } from './users/users.service';
 import { NinokuniUsersModule } from './ninokuniusers/ninokuniusers.module';
 import { CouponSubmissionsModule } from './coupon-submission/coupon-submissions.module';
-
+import { ScheduleModule } from '@nestjs/schedule';
+import { HttpModule } from '@nestjs/axios';
+import { TasksService } from './tasks/tasks.service';
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
+    HttpModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
@@ -31,6 +35,6 @@ import { CouponSubmissionsModule } from './coupon-submission/coupon-submissions.
     CouponSubmissionsModule, // 쿠폰 제보 모듈
   ],
   controllers: [AppController, UsersController], // NinokuniUsersController를 여기서 제거
-  providers: [AppService, UsersService], // NinokuniUsersService를 여기서 제거
+  providers: [TasksService, AppService, UsersService], // NinokuniUsersService를 여기서 제거
 })
 export class AppModule {}
