@@ -17,4 +17,4 @@ COPY . .
 # 앱이 3000 포트에서 실행됨을 알림
 EXPOSE 3000
 
-CMD [ "node", "main.js" ]
+CMD [ "node", "main.ts" ]
